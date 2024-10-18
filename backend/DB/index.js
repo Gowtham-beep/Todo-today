@@ -18,9 +18,18 @@ const usersSchema=new Schema({
     hash:String
 })
 
+const todoSchema=new Schema({
+    title:String,
+    description:String,
+    status:Boolean,
+    userId:ObjectID
+})
+
 const User=mongoose.model('User',usersSchema)
+const Todo=mongoose.model('Todo',todoSchema)
 
 module.exports={
     DatabaseConnection,
-    User
+    User,
+    Todo
 }

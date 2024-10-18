@@ -1,5 +1,6 @@
 const express=require('express')
 const jwt= require('jsonwebtoken')
+const mongoose = require('mongoose');
 const {User}=require('../DB/index')
 const router=express.Router()
 const bcrypt=require('bcrypt')
@@ -46,6 +47,7 @@ router.post('/signin', async (req, res) => {
     
     try {
         const user = await User.findOne({ username });
+        
         if (user) {
             bcrypt.compare(password, user.hash, (err, result) => {
                 if (err) {
@@ -74,4 +76,7 @@ router.post('/signin', async (req, res) => {
         });
     }
 });
+
+
+
 module.exports=router
