@@ -54,7 +54,7 @@ router.post('/signin', async (req, res) => {
                 if (err) {
                     return res.status(500).json({ message: "Error during password comparison" });
                 }if (result) {
-                    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
                     res.json({
                         token: token,
                         message: "Password matched"

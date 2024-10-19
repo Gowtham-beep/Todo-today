@@ -28,11 +28,11 @@ const SignUp = () => {
         height="100vh"
         alignItems="center"
         justifyContent="center"
-        bg="gray.100"
+        
         >
-    <Box p={8}  maxW="md" borderWidth={1} borderRadius={8} boxShadow="lg">
-      <Heading as="h2" size="lg" mb={6} textAlign="center">
-        Sign Up
+    <Box p={8}  maxW="md" borderWidth={1} borderRadius={8} boxShadow="dark-lg">
+      <Heading as="h2" size="lg" mb={6} textAlign="center" colorScheme='teal'>
+        Welcome to Todo-Today 
       </Heading>
 
       <VStack spacing={4} align="stretch">
@@ -57,6 +57,11 @@ const SignUp = () => {
 
         <Button colorScheme="teal" onClick={handleSignUp}>
           Sign Up
+        </Button>
+        <Button colorScheme="teal" onClick={() => {
+        navigate('/Signin');  // Redirect to SignIn page
+      }}>
+          Sign In
         </Button>
       </VStack>
     </Box>
