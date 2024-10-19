@@ -7,7 +7,8 @@ const bcrypt=require('bcrypt')
 require('dotenv').config()
 
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body; 
+    const { username, password } = req.body;
+    const saltRounds=10 
     try {
         
         const user = await User.findOne({ username });
