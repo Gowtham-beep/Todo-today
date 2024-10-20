@@ -16,7 +16,7 @@ const SignUp = () => {
       password
     })
       .then(() => {
-        navigate('/');  // Redirect to SignIn page
+        navigate('/Signin');  // Redirect to Signup page
       })
       .catch((err) => {
         setError(err.response.data.message);

@@ -1,4 +1,3 @@
-// src/components/SignIn.jsx
 import React, { useState } from 'react';
 import { Box, Button, Input, VStack, FormLabel, Heading, Text,Flex } from '@chakra-ui/react';
 import axios from 'axios';
@@ -20,7 +19,7 @@ const SignIn = () => {
         navigate('/todos');  // Redirect to Todos page
       })
       .catch((err) => {
-        setError(err.response.data.error);
+        setError(err.response.data.message);
       });
   };
 
