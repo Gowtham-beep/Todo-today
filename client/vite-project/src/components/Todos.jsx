@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, VStack, Heading, Grid, useBreakpointValue, Spinner, Text } from '@chakra-ui/react';
+import { Box, VStack, Heading, Grid, useBreakpointValue, Spinner, Text,Flex} from '@chakra-ui/react';
 import Todocard from './Todocard';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AddTodo from './Addtodo';
+import SignOutButton from './SignoutButton';
 
 export default function Todos() {
   const [todos, setTodos] = useState([]);  // Initialize as an empty array
@@ -55,7 +56,18 @@ export default function Todos() {
   }
 
   if (todos.length === 0) {
-    return <Text fontSize="lg" color="gray.600">No todos available. Please add some tasks!</Text>;
+    return <Flex 
+    height="100vh"
+    alignItems="center"
+    justifyContent="center">
+      <VStack gap={4}>
+      <Box p={8} maxW="md" borderWidth={1} borderRadius={8} boxShadow="dark-lg">
+      <Heading as="h1" size="lg" mb={6} textAlign="center" color="red.500" fontSize="lg">
+        No Todos available. Add  Todos
+        </Heading></Box>
+        <AddTodo setTodos={setTodos}/>
+        </VStack>
+    </Flex>
   }
   const handleDelete = (id) => {
     const token = localStorage.getItem('token');  // Retrieve token from localStorage
@@ -100,8 +112,10 @@ export default function Todos() {
   
   return (
     <Box p={4}>
-      <Heading mb={6} textAlign="center" color="teal.500">Your Todos</Heading>
-
+       <Flex justifyContent="space-between" alignItems="center" mb={6}>
+      <Heading mb={6} textAlign="center" color="teal.500">Your Todos for Today</Heading>
+      <SignOutButton/>
+      </Flex>
       <Grid templateColumns={`repeat(${columns}, 1fr)`} gap={6}>
         {todos.map((todo) => (
           <Todocard
@@ -113,8 +127,9 @@ export default function Todos() {
             onToggle={() => handleToggle(todo._id, todo.status)}
           />
           ))}
+        <AddTodo setTodos={setTodos} />
         </Grid>
-      <AddTodo setTodos={setTodos} />
+      
     </Box>
   );
 }
